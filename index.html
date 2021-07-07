@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Recetas</title>
+
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <script>
+
+        //   let h1Element = React.createElement(
+
+        //     "h1",
+
+        //     { id: "test", key: "carne" },
+
+        //     "Carne asada"
+
+        //   );
+
+        //   let h2Element = React.createElement(
+
+        //     "h2",
+
+        //     { id: "test2", key: "pollo" },
+
+        //     "Pollo asado"
+
+        //   );
+
+        //   ReactDOM.render([h1Element, h2Element], document.getElementById("root"));
+
+
+
+        // let elements = React.createElement("section",{id:"receta"},
+
+        //     React.createElement("h1",null,"Croquetas"),
+
+        //     React.createElement("ul",{className:"Ingredientes"},
+
+        //         React.createElement("li",null,"Huevos"),
+
+        //         React.createElement("li",null,"Queso"),
+
+        //         React.createElement("li",null,"Harina"),
+
+        //         React.createElement("li",null,"Leche"),
+
+        //         React.createElement("li",null,"Sal"),
+
+        //         React.createElement("li",null,"Azucar"),
+
+        //         React.createElement("li",null,"Verduras varias"),
+
+        //         React.createElement("li",null,"Chocomilk para la sed")
+
+        //     ),
+
+        //     React.createElement("section",{className:"Instrucciones"},
+
+        //         React.createElement("h2",null,"Como preparar unas roquetas con ChocoMilk"),
+
+        //         React.createElement("p",null,"Picamos bien el jamón ibérico para que quede en taquitos muy pequeños. Ponemos en la sartén la mantequilla y la harina y en cuanto se funde la primera, removemos y agregamos la mitad del jamón, para que este quede envuelto en esa masa o roux.")
+
+        //     )
+
+        // );
+
+        const arrayIngredientes = ["Huevos", "Queso", "Harina", "Leche", "Sal", "Azucar", "Verduras"];
+
+        let elements = React.createElement("section", { id: "receta" },
+
+            React.createElement("h1", null, "Croquetas"),
+
+            React.createElement("ul", { className: "Ingredientes" },
+
+                arrayIngredientes.map((ingrediente, i) => React.createElement("li", { key: i }, ingrediente))
+
+            ),
+
+            React.createElement("section", { className: "Instrucciones" },
+
+                React.createElement("h2", null, "Como preparar unas roquetas con ChocoMilk"),
+
+                React.createElement("p", null, "Picamos bien el jamón ibérico para que quede en taquitos muy pequeños. Ponemos en la sartén la mantequilla y la harina y en cuanto se funde la primera, removemos y agregamos la mitad del jamón, para que este quede envuelto en esa masa o roux.")
+
+            )
+
+        );
+
+        console.log(elements)
+
+        ReactDOM.render(elements, document.getElementById("root"))
+
+    </script>
+
+</body>
+
+</html>
