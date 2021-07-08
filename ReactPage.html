@@ -6,21 +6,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React Page</title>
 </head>
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  background: gold;
+  height: 5rem;
+}
+.Menu {
+  display: flex;
+  align-items: center;
+  height: inherit;
+}
+.Menu-item {
+  list-style: none;
+  flex: 1;
+  height: inherit;
+  line-height: 5rem;
+  text-align: center;
+  color: whitesmoke;
+  transition: all .4s;
+  cursor: pointer;
+}
+.Menu-item--color1 {
+  background: #003049;
+}
+.Menu-item--color2 {
+  background: #D62828;
+}
+.Menu-item--color3 {
+  background: #F77F00;
+}
+.Menu-item--color4 {
+  background: #EF626C;
+}
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: 1px dashed red;
+}
+.content-aside {
+  outline: 1px dashed red;
+  flex: 0 0 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  height: 7rem;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+</style>
 <body>
     <div id="root"></div>
 
     <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <script>
-        let elements = 
-            React.createElement('section', {id: 'container'},
-            React.createElement('h2', null, ' My ReactPage'),
-            React.createElement('h3', null, 'Subtitle'),
-                );
+    <script type="text/babel">
+
+
+    const navItems = ["Home", "About us", "Galery", "Contact"];
+
+    function Container(){
+        return(
+            <div className="container">
+                <Header/>
+                <Content/>
+                <Footer></Footer>
+            </div>
+        );
+    }
+
+    function Header(props){
+        return(
+            <div className="header">
+                <ul className="Menu">
+                    <li className="Menu-item Menu-item--color1">
+                        Home
+                    </li>
+                    <li className="Menu-item Menu-item--color2">
+                        About us
+                    </li>
+                    <li className="Menu-item Menu-item--color3">
+                        Galeria
+                    </li>
+                    <li className="Menu-item Menu-item--color4">
+                        Contacto
+                    </li>
+                </ul>
+            </div>
+        );
+    }
+
+    function Content(){
+        return(
+            <section className="content">
+                <div >
+                    <h2>My main  content</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, explicabo dolorem illum, nulla culpa illo, doloribus ex enim quo voluptas doloremque id ducimus dolore. Facere laborum eaque reiciendis. Incidunt, ea.</p>
+                </div>
+                <Aside />
+            </section>
+        );
+    }
+    
+    function Aside(){
+        return(
+            <aside className="content-aside">
+                <h3>My aside</h3>
+            </aside>
+        );
+    }
+
+    function Footer(){
+        return(
+            <footer>
+                <ul>
+                    <li>item</li>
+                    <li>item</li>
+                </ul>
+                <div className="">
+                    <h3>My footer</h3>
+                </div>
+            </footer>
+        );
+    }
             
-       
-        ReactDOM.render(elements, document.getElementById('root'));
+    ReactDOM.render(<Container  data="navItems"/>, document.getElementById('root'));
 
     </script>
 </body>
