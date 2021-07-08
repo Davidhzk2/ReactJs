@@ -14,7 +14,7 @@
 }
 
 .header {
-  background: gold;
+  background: #008ac7;
   height: 5rem;
 }
 .Menu {
@@ -22,7 +22,7 @@
   align-items: center;
   height: inherit;
 }
-.Menu-item {
+.Menu-item{
   list-style: none;
   flex: 1;
   height: inherit;
@@ -31,6 +31,11 @@
   color: whitesmoke;
   transition: all .4s;
   cursor: pointer;
+}
+.Menu-item:hover {
+  flex: 5;
+  font-size:1.7rem;
+  text-shadow: 1px 1px 3px #fff;
 }
 .Menu-item--color1 {
   background: #003049;
@@ -47,20 +52,38 @@
 .content {
   flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   outline: 1px dashed red;
+  min-height: 82vh;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
 .content-aside {
   outline: 1px dashed red;
   flex: 0 0 15rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* background-color: #008a7c; */
 }
 .footer {
-  height: 7rem;
-  margin-top: auto;
+  height: 5rem;
+  /* margin-top: auto; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,14 +100,23 @@
 
     <script type="text/babel">
 
+    const text = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor dolores laborum doloremque soluta eius culpa rerum reprehenderit necessitatibus ullam repudiandae. Ipsum a eum, laudantium quod atque impedit, eligendi aliquam libero est ducimus nobis illo quos accusantium? Voluptates tempore impedit qui culpa, fugit nostrum voluptatum laboriosam, deleniti hic illum molestias possimus!";
 
-    const navItems = ["Home", "About us", "Galery", "Contact"];
+    // const navItems = ["Home", "About us", "Galery", "Contact"];
+    const navItems = [
+            {title:"Home", class:"Menu-item Menu-item--color1"},
+            {title:"About us", class:"Menu-item Menu-item--color2"},
+            {title:"Galery", class:"Menu-item Menu-item--color3"},
+            {title:"Contac", class: "Menu-item Menu-item--color4" },
+        ];
 
-    function Container(){
+    function Container(props){
         return(
             <div className="container">
-                <Header/>
-                <Content/>
+                {props.navItems.map((item, i)=>
+                    <Header key={i} {...item}/>
+                    )}
+                    <Content />
                 <Footer></Footer>
             </div>
         );
@@ -94,18 +126,7 @@
         return(
             <div className="header">
                 <ul className="Menu">
-                    <li className="Menu-item Menu-item--color1">
-                        Home
-                    </li>
-                    <li className="Menu-item Menu-item--color2">
-                        About us
-                    </li>
-                    <li className="Menu-item Menu-item--color3">
-                        Galeria
-                    </li>
-                    <li className="Menu-item Menu-item--color4">
-                        Contacto
-                    </li>
+                        <li className={props.class}>{props.title}</li>
                 </ul>
             </div>
         );
@@ -114,38 +135,85 @@
     function Content(){
         return(
             <section className="content">
-                <div >
-                    <h2>My main  content</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, explicabo dolorem illum, nulla culpa illo, doloribus ex enim quo voluptas doloremque id ducimus dolore. Facere laborum eaque reiciendis. Incidunt, ea.</p>
-                </div>
                 <Aside />
+                <div>
+                    <h2>My main  content</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor dolores laborum doloremque soluta eius culpa rerum reprehenderit necessitatibus ullam repudiandae. Ipsum a eum, laudantium quod atque impedit, eligendi aliquam libero est ducimus nobis illo quos accusantium? Voluptates tempore impedit qui culpa, fugit nostrum voluptatum laboriosam, deleniti hic illum molestias possimus!</p>
+                    <br/>
+                    <ContentTable/>
+                </div>
             </section>
         );
     }
-    
+    function ContentTable(){
+        return(
+            <table>
+                <tr>
+                    <th>Company</th>
+                    <th>Contact</th>
+                    <th>Country</th>
+                </tr>
+                <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                </tr>
+                <tr>
+                    <td>Centro comercial Moctezuma</td>
+                    <td>Francisco Chang</td>
+                    <td>Mexico</td>
+                </tr>
+                <tr>
+                    <td>Ernst Handel</td>
+                    <td>Roland Mendel</td>
+                    <td>Austria</td>
+                </tr>
+                <tr>
+                    <td>Island Trading</td>
+                    <td>Helen Bennett</td>
+                    <td>UK</td>
+                </tr>
+                <tr>
+                    <td>Laughing Bacchus Winecellars</td>
+                    <td>Yoshi Tannamuri</td>
+                    <td>Canada</td>
+                </tr>
+                <tr>
+                    <td>Magazzini Alimentari Riuniti</td>
+                    <td>Giovanni Rovelli</td>
+                    <td>Italy</td>
+                </tr>
+            </table>
+        );
+    }    
     function Aside(){
         return(
             <aside className="content-aside">
                 <h3>My aside</h3>
+                <ul>
+                    <li>Item</li>
+                    <li>Item</li>
+                    <li>Item</li>
+                </ul>
+                <p></p>
             </aside>
         );
     }
 
-    function Footer(){
+    const Footer =()=>{
         return(
-            <footer>
-                <ul>
-                    <li>item</li>
-                    <li>item</li>
-                </ul>
+            <footer className="footer">
                 <div className="">
-                    <h3>My footer</h3>
+                    <h3>&copy;Todos los derechos reservados</h3>
                 </div>
+                <ul>
+                    <li>@Davidhz</li>
+                </ul>
             </footer>
         );
     }
             
-    ReactDOM.render(<Container  data="navItems"/>, document.getElementById('root'));
+    ReactDOM.render(<Container  navItems={navItems}/>, document.getElementById('root'));
 
     </script>
 </body>
